@@ -1,16 +1,16 @@
-var bardata = [50,50,50,50,50,50,50, 50, 50,50];
-var note = [100,200,300,400,500,600,700,800,900,1000];
+var bardata = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
+var note = [30,40,50,60,70,80,90,100,120,130,140,150,160,170,180,190,200,220,230,240,250];
 
  // defaults to 0 => sine
 
-function note1(notes){
+function note1(notes, time){
 var context = new AudioContext() || webkitAudioContext(),
 oscillator = context.createOscillator();
 oscillator.type = 0;
 oscillator.frequency.value = notes;
 oscillator.connect(context.destination);
-oscillator.start(0); // delay in seconds
-oscillator.stop(0.25);
+oscillator.start(time); // delay in seconds
+oscillator.stop(time + 0.25);
 }
 
 
@@ -26,8 +26,8 @@ var margin = { top: 30, right: 30, bottom: 40, left:50 }
 
 var height = 800 - margin.top - margin.bottom,
     width = 1200 - margin.left - margin.right,
-    barWidth = 50,
-    barOffset = 5;
+    barWidth = 52,
+    barOffset = 1;
 
 var tempColor;
 
@@ -45,12 +45,12 @@ var xScale = d3.scale.ordinal()
 
 var tooltip = d3.select('body').append('div')
         .style('position', 'absolute')
-        .style('padding', '0 10px')
+        .style('padding', '0 1px')
         .style('background', 'white')
         .style('opacity', 0)
 
 var myChart = d3.select('#chart').append('svg')
-    .style('background', '#404040')
+    .style('background', 'white')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom)
     .append('g')
@@ -72,7 +72,7 @@ var myChart = d3.select('#chart').append('svg')
         tooltip.transition()
             .style('opacity', .9)
 
-        tooltip.html(d)
+        tooltip.html(note[i])
             .style('left', (d3.event.pageX - 35) + 'px')
             .style('top',  (d3.event.pageY - 30) + 'px')
 
@@ -80,9 +80,9 @@ var myChart = d3.select('#chart').append('svg')
         tempColor = this.style.fill;
         d3.select(this)
             .style('opacity', .5)
-            .style('fill', 'yellow')
+            .style('fill', 'black');
 
-        note1(note[i]);
+        note1(note[i],0);
 
     })
 
@@ -122,19 +122,19 @@ var vGuideScale = d3.scale.linear()
 //    vGuide.selectAll('line')
 //        .style({ stroke: "#000"})
 
-var hAxis = d3.svg.axis()
-    .scale(xScale)
-    .orient('bottom')
-    .tickValues(xScale.domain().filter(function(d, i) {
-        return !(i % (bardata.length/5));
-    }))
+//var hAxis = d3.svg.axis()
+//    .scale(xScale)
+//    .orient('bottom')
+//    .tickValues(xScale.domain().filter(function(d, i) {
+//        return !(i % (bardata.length/5));
+//    }))
 
-var hGuide = d3.select('svg').append('g')
-    hAxis(hGuide)
-    hGuide.attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')')
-    hGuide.selectAll('path')
-        .style({ fill: 'none', stroke: "#000"})
-    hGuide.selectAll('line')
-        .style({ stroke: "#000"})
+//var hGuide = d3.select('svg').append('g')
+//    hAxis(hGuide)
+//    hGuide.attr('transform', 'translate(' + margin.left + ', ' + (height + margin.top) + ')')
+//    hGuide.selectAll('path')
+//        .style({ fill: 'none', stroke: "#000"})
+//    hGuide.selectAll('line')
+//        .style({ stroke: "#000"})
 //d3js sound library 
 
