@@ -1,7 +1,8 @@
-var bardata = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
-var note = [30,40,50,60,70,80,90,100,120,130,140,150,160,170,180,190,200,220,230,240,250];
-
+var bardata = [50,50,50,50,50,50,50,50,50,50,50,50,50,50,50,50];
+var note = [350,325,210, 157,400,565,560,600,700,800,900,1000,1100,1200,1300,1400];
  // defaults to 0 => sine
+
+
 
 function note1(notes, time){
 var context = new AudioContext() || webkitAudioContext(),
@@ -21,6 +22,7 @@ oscillator.stop(time + 0.25);
 //bardata.sort(function compareNumbers(a,b) {
 //    return a -b;
 //});
+
 
 var margin = { top: 30, right: 30, bottom: 40, left:50 }
 
@@ -72,14 +74,15 @@ var myChart = d3.select('#chart').append('svg')
         tooltip.transition()
             .style('opacity', .9)
 
-        tooltip.html(note[i])
+        tooltip.html(note[i]+"Hz")
             .style('left', (d3.event.pageX - 35) + 'px')
             .style('top',  (d3.event.pageY - 30) + 'px')
 
 
         tempColor = this.style.fill;
         d3.select(this)
-            .style('opacity', .5)
+            .style('height', 100000)
+            .style('opacity', 0.9)
             .style('fill', 'black');
 
         note1(note[i],0);
