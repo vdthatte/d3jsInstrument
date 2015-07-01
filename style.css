@@ -1,2 +1,7 @@
-body{background: #0099FF; font-family: sans-serif;}
-h2,p{color: #FFF;}
+body{
+	background: #D00000; 
+	font-family: 'Roboto', sans-serif;
+}
+h2,p{
+	color: #FFF;
+}

@@ -33,17 +33,11 @@ var height = 800 - margin.top - margin.bottom,
 
 var tempColor;
 
-var colors = d3.scale.linear()
-.domain([0, bardata.length*.33, bardata.length*.66, bardata.length])
-.range(['#B58929','#C61C6F', '#268BD2', '#85992C'])
+var colors = d3.scale.linear().domain([0, bardata.length*.33, bardata.length*.66, bardata.length]).range(['#B58929','#C61C6F', '#268BD2', '#85992C'])
 
-var yScale = d3.scale.linear()
-        .domain([0, d3.max(bardata)])
-        .range([0, height]);
+var yScale = d3.scale.linear().domain([0, d3.max(bardata)]).range([0, height]);
 
-var xScale = d3.scale.ordinal()
-        .domain(d3.range(0, bardata.length))
-        .rangeBands([0, width], 0.2)
+var xScale = d3.scale.ordinal().domain(d3.range(0, bardata.length)).rangeBands([0, width], 0.2)
 
 var tooltip = d3.select('body').append('div')
         .style('position', 'absolute')
